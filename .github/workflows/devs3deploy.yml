@@ -29,8 +29,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Copy files to S3
+      - name: Sync files to S3
         run: |
-          aws s3 sync ./mysite s3://$S3_BUCKET \
-            --delete \
-            --exact-timestamps
+          aws s3 sync ./mysite s3://$S3_BUCKET --delete --exact-timestamps
+          echo "✅ Sync completed, verifying contents..."
+          aws s3 ls s3://$S3_BUCKET --recursive --human-readable --summarize
+
