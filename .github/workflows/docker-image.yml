@@ -39,16 +39,6 @@ jobs:
       run: |
         echo "Listing files in the repo:"
         ls -alh
-    
-    - name: Scan Dockerfile with Trivy
-      uses: aquasecurity/trivy-action@master
-      with:
-          scan-type: dockerfile
-          input: ./images/Dockerfile       # path to your Dockerfile
-          format: table
-          severity: HIGH,CRITICAL
-          exit-code: 1   # fail the job if HIGH/CRITICAL vulnerabilities found
-
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
@@ -63,3 +53,12 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./images
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        
+    - name: Run Trivy vulnerability scanner in repo mode
+      uses: aquasecurity/trivy-action@0.28.0
+      with:
+          image-ref: ${{ steps.login-ecr.outputs.registry }}/simple-image:${{ github.sha }}
+          format: table
+          severity: HIGH,CRITICAL
+          exit-code: 1   # fail workflow if HIGH/CRITICAL vulnerabilities exist
+
