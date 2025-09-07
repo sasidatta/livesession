@@ -10,7 +10,9 @@ env:
   ECR_REPOSITORY: sasidatta           # set this to your Amazon ECR repository name
 
 permissions:
-  contents: read
+      contents: read # for actions/checkout to fetch code
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
 
 jobs:
   deploy:
@@ -37,10 +39,20 @@ jobs:
       run: |
         echo "Listing files in the repo:"
         ls -alh
+    
+    - name: Scan Dockerfile with Trivy
+      uses: aquasecurity/trivy-action@master
+      with:
+          scan-type: dockerfile
+          input: ./images/Dockerfile       # path to your Dockerfile
+          format: table
+          severity: HIGH,CRITICAL
+          exit-code: 1   # fail the job if HIGH/CRITICAL vulnerabilities found
 
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
+      if: success()  # Only runs if previous step passed
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
