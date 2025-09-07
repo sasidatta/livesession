@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - dev   # change branch if needed
+  workflow_dispatch:  # Manual trigger from GitHub UI
+
 
 env:
   AWS_REGION: us-east-1               # change to your AWS region
