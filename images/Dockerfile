@@ -1,13 +1,17 @@
-# Use Nginx as base image
-FROM nginx:alpine
+# Use a lightweight base image
+FROM alpine:latest
 
 # Set maintainer label (optional)
-LABEL maintainer="dattu2009@yahoo.com"
+LABEL maintainer="yourname@example.com"
 
-# Copy static site files into Nginx html directory
-COPY ./mysite /usr/share/nginx/html
+# Install a small package for demonstration
+RUN apk add --no-cache curl bash
 
-# Expose port 80
-EXPOSE 80
+# Set working directory
+WORKDIR /app
 
-# Nginx runs automatically (CMD is in base image)
+# Copy any local files (optional)
+COPY . /app
+
+# Default command
+CMD ["sh", "-c", "echo Hello from simple Docker image! && sleep 3600"]
