@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>La Petite Café — Aesthetic Cafe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#fff8f2;
+      --card:#fff;
+      --accent:#c07b58;
+      --muted:#7a6f6a;
+      --glass: rgba(255,255,255,0.6);
+      --shadow: 0 10px 30px rgba(20,20,20,0.08);
+      --rounded: 16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background: linear-gradient(180deg,#fff8f2 0%, #fffefc 100%);
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    .container{max-width:1100px;margin:40px auto;padding:24px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
+    .brand{display:flex;gap:16px;align-items:center}
+    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#f0b089);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:Playfair Display;font-size:20px;box-shadow:var(--shadow)}
+    .brand h1{margin:0;font-family:Playfair Display;font-weight:700;font-size:20px}
+    .nav{display:flex;gap:16px;align-items:center}
+    .nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .btn-book{background:var(--accent);color:#fff;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:600}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-bottom:32px}
+    .hero-card{background:var(--card);border-radius:var(--rounded);padding:36px;box-shadow:var(--shadow)}
+    .hero h2{font-family:Playfair Display;margin:0 0 12px;font-size:36px}
+    .hero p{margin:0 0 18px;color:var(--muted)}
+    .meta{display:flex;gap:12px;align-items:center}
+    .meta .pill{background:var(--glass);padding:8px 12px;border-radius:999px;font-weight:600;color:var(--muted)}
+    .hero-visual{border-radius:var(--rounded);overflow:hidden;box-shadow:var(--shadow)}
+    .hero-visual img{display:block;width:100%;height:100%;object-fit:cover}
+
+    /* Menu grid */
+    .menu{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
+    .card{background:var(--card);border-radius:14px;padding:16px;box-shadow:var(--shadow);transition:transform .22s ease, box-shadow .22s ease}
+    .card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,0.12)}
+    .card h3{margin:0 0 6px;font-size:18px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+    .price{font-weight:700;color:var(--accent)}
+
+    /* About + contact */
+    .split{display:grid;grid-template-columns:1fr 360px;gap:22px;margin-top:36px}
+    .about{background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.7));padding:24px;border-radius:14px}
+    .contact{background:var(--card);padding:20px;border-radius:14px;box-shadow:var(--shadow)}
+    .contact label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    .contact input,.contact textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:12px;font-size:14px}
+    .contact button{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;border:0;font-weight:600}
+
+    /* Footer */
+    footer{margin-top:44px;text-align:center;color:var(--muted);font-size:14px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .menu{grid-template-columns:repeat(2,1fr)}
+      .split{grid-template-columns:1fr}
+    }
+    @media (max-width:520px){
+      .menu{grid-template-columns:1fr}
+      .logo{width:52px;height:52px;font-size:18px}
+      .hero h2{font-size:26px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">LP</div>
+        <div>
+          <h1>La Petite Café</h1>
+          <div style="font-size:13px;color:var(--muted)">Handcrafted coffee • Cozy vibes</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="btn-book" href="#contact">Book Table</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h2>Warm coffee. Quiet corners. <br><span style="color:var(--accent)">Beautiful moments.</span></h2>
+        <p>La Petite Café is a little retreat in the city — specialty coffee, freshly baked pastries, and a calm place to work or meet friends.</p>
+        <div class="meta">
+          <div class="pill">Open: 8am - 8pm</div>
+          <div class="pill">Free Wi‑Fi</div>
+          <div class="pill">Artisanal Roasts</div>
+        </div>
+
+        <div class="menu" id="menu" style="margin-top:22px">
+          <div class="card">
+            <h3>Café Latte <span class="price">₹140</span></h3>
+            <p>Silky steamed milk with a double shot of espresso.</p>
+          </div>
+          <div class="card">
+            <h3>Flat White <span class="price">₹150</span></h3>
+            <p>Velvety crema and perfectly textured milk.</p>
+          </div>
+          <div class="card">
+            <h3>Chocolate Croissant <span class="price">₹120</span></h3>
+            <p>Buttery pastry with lingering chocolate notes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Cafe interior">
+      </div>
+    </section>
+
+    <div class="split">
+      <div class="about" id="about">
+        <h3 style="font-family:Playfair Display;margin-top:0">Our Story</h3>
+        <p style="color:var(--muted)">Founded by a group of friends who loved slow mornings, La Petite Café focuses on sustainably sourced beans, careful brewing, and a welcoming space where everyone can slow down. We roast in small batches and change our seasonal menu often.</p>
+
+        <h4 style="margin-top:18px">Why customers love us</h4>
+        <ul style="color:var(--muted)">
+          <li>Small-batch roasts and single-origin options</li>
+          <li>Comfortable seating and natural light</li>
+          <li>Plant-based milk alternatives available</li>
+        </ul>
+      </div>
+
+      <aside class="contact" id="contact">
+        <h4 style="margin-top:0">Reserve a Table</h4>
+        <form onsubmit="event.preventDefault();alert('Thanks — we will get back to you!');">
+          <label for="name">Name</label>
+          <input id="name" placeholder="Your name" required />
+          <label for="date">Date & Time</label>
+          <input id="date" type="datetime-local" />
+          <label for="msg">Message</label>
+          <textarea id="msg" rows="4" placeholder="Any special requests?"></textarea>
+          <button type="submit">Request Reservation</button>
+        </form>
+
+        <div style="margin-top:16px;color:var(--muted);font-size:13px">
+          <div>📍 12 Blossom Lane, Downtown</div>
+          <div>📞 +91 98765 43210</div>
+          <div>✉️ hello@lapetite.cafe</div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <div>© 2025 La Petite Café — handcrafted with love</div>
+    </footer>
+  </div>
+</body>
+</html>
