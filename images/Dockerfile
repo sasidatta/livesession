@@ -1,5 +1,5 @@
 # Use a lightweight base image
-FROM alpine:latest
+FROM alpine:3.4
 
 # Set maintainer label (optional)
 LABEL maintainer="yourname@example.com"
