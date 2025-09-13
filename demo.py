@@ -7,7 +7,7 @@ def greet_user(name: str) -> str:
     return f"Hello, {name}! 👋 Welcome to the Python demo."
 
 def calculate_sum(numbers: List[int]) -> int:
-    """Return the sum of a list of numbers."""
+    """Return the sum of a list of numbers in list."""
     return sum(numbers)
 
 def main():
